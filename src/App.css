@@ -1,0 +1,125 @@
+*{
+  box-sizing: border-box;
+}
+
+
+.header {
+  position: fixed; 
+  color: black;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  /* outline: 2px solid blue;  */
+  background-color: whitesmoke;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+  transition: height .9s ease; 
+  z-index: 1000; 
+  /* border-radius: 10px; */
+
+
+}
+
+.sub1{
+  left: 0; 
+  width: 100%; 
+  align-items: flex-end; 
+  height: 200px; 
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+  padding: 0 30rem;
+}
+
+
+.sub3{
+  background: linear-gradient(to bottom right, #ff4e91, #ff8963);
+  transition: height 0s ease; 
+}
+
+.LB{
+  color: black;
+}
+.LB:hover{
+  color:#1eaff3;
+  cursor: pointer;
+}
+.CB:hover{
+  color:#1eaff3;
+  cursor: pointer;
+}
+.RB:hover{
+  color:#1eaff3;
+  cursor: pointer;
+}
+
+.BLB:hover{
+  color:#ff3287;
+  cursor: pointer;
+}
+.BCB:hover{
+  color:#ff3287;
+  cursor: pointer;
+}
+.BRB:hover{
+  color:#ff3287;
+  cursor: pointer;
+}
+
+.sub2{
+  left: 0; 
+  width: 100%; 
+  align-items: flex-end;
+  height: 20px;
+  gap: 2rem;
+  padding: 0 25rem;
+  
+}
+
+body {
+  margin: 0;
+  overflow-y: auto; /* Allow vertical scrolling */
+  min-height: 200vh; /* Double the viewport height */
+  padding-top: 75px; /* Offset the fixed navbar height */
+  /* overflow-y: hidden */
+}
+
+.box {
+  position:relative;
+  top: 200px;
+  border-style: solid;
+  border-color: red;
+  min-width: 100%;
+  gap: 2rem;
+  padding: 0 1rem;
+
+}
+
+.one{
+  position: relative;
+  top: 100px;
+  height: 1000px;
+}
+
+.card {
+  user-select: none;
+  margin: 10px;  
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: whitesmoke;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 10px;
+  border-color: whitesmoke;;
+}
+
+.card:hover{
+  cursor: pointer;
+}
