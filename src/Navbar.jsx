@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import search from "./assets/search.png"
 import ham from "./assets/ham.png"
 import x from "./assets/Red_X.svg.png"
@@ -7,14 +7,9 @@ import x from "./assets/Red_X.svg.png"
 
 function Navbar({height}) {
 
-    function disableScroll() {
-        document.body.style.overflow = 'hidden';
-      }
-
-    function enableScroll() {
-        document.body.style.overflow = '';
-      }
-
+    // function disableScroll(searchdrop) {
+    //     document.body.style.overflow = (searchdrop ? "hidden": "");
+    //   }
 
 
     const [drop, SetDrop] = useState(0)
@@ -23,9 +18,30 @@ function Navbar({height}) {
     const [searchdrop, SetSearchdrop] = useState(false)
     const [isdown, SetIsdown] = useState(true)
 
+    const [ham_height, setHam_Height] = useState("35px")
+    const [search_height, setSearch_Height] = useState("30px")
+
+    useEffect(() => {
+    if (height[0] == 100) {
+      // Runs only when height changes, not on initial render
+      setHam_Height("35px");
+    } else {
+      setHam_Height("9px");
+    }
+    
+    if (height[0] == 100) {
+      // Runs only when height changes, not on initial render
+      setSearch_Height("30px");
+    } else {
+      setSearch_Height("1px");
+    }
+
+  }, [height]);
+
+
     return (
     <>
-
+      <div>
         <div onMouseEnter={()=>SetDrop(400)} onMouseLeave={()=>SetDrop(0)} style={{ height: `${drop}px` , fontSize: `25px`}} className="header sub3">
         <div > React</div>
         <div> Python</div>
@@ -47,26 +63,37 @@ function Navbar({height}) {
         <div  className = "RB font-bold text-2xl">Contact</div>
         </div>
 
-        <div style={{ height: `${height[0]}px` , fontSize: `${height[0]-20}px`}} className="header">
-        <button style={{  backgroundImage: `url(${ham})`,backgroundSize: "cover"}} className='card' onClick={()=>{(hamdrop == 900 ? SetHamdrop(0) : SetHamdrop(900)), SetSearchdrop(true), disableScroll()}}></button>
-        <button class="font-bold text-6xl" style={{  color: 'black', fontSize: `${height[0]-20}px`, transition: 'font-size .8s ease', }} onClick={()=>(console.log('hello'))}>Peter Vaichus</button>
-        <button style={{  backgroundImage: `url(${search})`,backgroundSize: "cover"}} className='card'></button>
-        </div>
 
-        <div style={{ transition: 'height 0.9s ease', backgroundColor: 'black', color: 'white', height: `${hamdrop}px`, fontSize: `${hamdrop}px`}} className="header">
+        <div style={{ height: `${height[0]}px` , fontSize: `${height[0]-20}px`}} className="header">
+        <div></div>
+        <button class="font-bold text-6xl" style={{  color: 'black', fontSize: `${height[0]-20}px`, transition: 'font-size .8s ease', }} onClick={()=>(console.log('hello'))}>Peter Vaichus</button>
+        <div></div>
+        </div>
+        
+
+        <div style={{ transition: 'height 0.1s ease', backgroundColor: 'black', color: 'white', height: `${hamdrop}px`, fontSize: `${hamdrop}px`}} className="header hamburger">
         <div> aceholder</div>
         <div> Placeholder</div>
         <div> Placeholder</div>
         </div>
 
-        {searchdrop && (<div style={{backgroundColor: 'black', height: `${height[0]}px` , fontSize: `${height[0]-20}px`}} className="header">
-        <button style={{  borderColor: 'black', backgroundColor: 'black', backgroundImage: `url(${x})`,backgroundSize: "cover"}} className='card' onClick={()=>{(hamdrop == 900 ? SetHamdrop(0) : SetHamdrop(900)), SetSearchdrop(false), enableScroll()}}></button>
-        <button style={{  backgroundColor: 'black', border: '0px', color: 'white', fontSize: `${height[0]-20}px`, transition: 'font-size .8s ease', }} onClick={()=>(console.log('hello'))}></button>
-        <button style={{   borderColor: 'black', backgroundColor: 'black',backgroundImage: `url(${search})`,backgroundSize: "cover"}} className='card'></button>
-        </div>)}
+        <div style = {{"--search-height":search_height }}className = "search">
+        <button style={{  backgroundImage: `url(${search})`,backgroundSize: "cover", border:'0px'}} className='card'></button>
+        </div>
         
+        <div style={{ "--ham-height": ham_height }} className="ham">
+          <label className="hamburger-menu">
+            <input type="checkbox" onClick={()=>{(searchdrop ? SetHamdrop(0) : SetHamdrop(900)), SetSearchdrop(!searchdrop)}}/>
+            <div></div> {/* Middle bar */}
+          </label>
+          <aside className="sidebar">
+            <nav>
+              <div></div>
+            </nav>
+          </aside>
+        </div>
 
-
+      </div>
     </>
     );
 }

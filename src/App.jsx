@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import axios from  "axios";
 import Navbar from "./Navbar"
+
+import { useState, useEffect } from 'react'
+import { Model } from "/untitled";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+
+
 
 function App() {
   const [height, setHeight] = useState(100);
@@ -14,6 +17,7 @@ function App() {
   const [baseline, setBaseline] = useState(100)
 
   const header = document.querySelector('.header');
+
 
 
 
@@ -30,12 +34,14 @@ function App() {
       setBottom(50)
       setTop(50)
       setBaseline(height)
+      
       }
     if(height>10+baseline || height>0){
       setMid(400)
       setBottom(500)
       setTop(100)
       setBaseline(height)
+      
 
       }
     
@@ -47,18 +53,25 @@ function App() {
     <>
       <div>
       <Navbar height={[top,mid,bottom]}></Navbar>
-  
       </div>
       <div className = "box one">
-        {height}
-      </div>
-      {/* <div className = "box three" style={{color: "red"}}>
-        {height}
-      </div>
-      <div className = "box two" style={{color: "blue", position: 'fixed'}}>
-        {height}
-      </div> */}
+        
+        <div className="cube">
+          <Canvas camera={{ fov: 64, position: [-2, 2, 0] }}>
+            <ambientLight intensity={5} />
+            <OrbitControls enableZoom={true} />
+            <Model />
+          </Canvas>
+        </div>
+        
 
+        <div className="cube a"></div>
+        <div className="cube b"></div>
+        <div className="cube c"></div>
+        
+        
+      </div>
+      
 
 
     </>
